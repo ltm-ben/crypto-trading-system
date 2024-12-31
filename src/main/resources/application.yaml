@@ -1,0 +1,33 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:cryptotradingdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: true     # Logs SQL queries in the console
+    defer-datasource-initialization: true
+  h2:
+    console:
+      enabled: true # Enables the H2 console
+
+client:
+  binance:
+    endpoints:
+      best-prices:
+        scheme: ${BINANCE_CLIENT_SCHEME:https}
+        host: ${BINANCE_CLIENT_HOST:api.binance.com}
+        port: ${BINANCE_CLIENT_PORT:443}
+        resource-path: ${BINANCE_GET_BEST_PRICES_URL:/api/v3/ticker/bookTicker}
+  huobi:
+    endpoints:
+      best-prices:
+        scheme: ${HUOBI_CLIENT_SCHEME:https}
+        host: ${HUOBI_CLIENT_HOST:api.huobi.pro}
+        port: ${HUOBI_CLIENT_PORT:443}
+        resource-path: ${HUOBI_GET_BEST_PRICES_URL:/market/tickers}
+
+application:
+  cache:
+    ttl: ${CACHE_TTL:10000}
